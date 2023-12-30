@@ -1,0 +1,15 @@
+﻿
+@model IEnumerable<DataLayer.TicketGroup>
+<span>گروه های تیکت</span>
+<ul>
+
+    @foreach (var item in Model)
+    {
+        <li><a href="/Groups/@item.GroupID/@item.GroupTitle">@item.GroupTitle </a></li>
+    }
+
+    @*<li><a href="">اخبار سیاسی</a></li>
+        <li><a href="">اخبار فرهنگی</a></li>
+        <li><a href="">اخبار اقتصادی</a></li>
+        <li><a href="">اخبار اجتماعی</a></li>*@
+</ul>

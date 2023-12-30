@@ -1,0 +1,26 @@
+﻿@model DataLayer.TicketGroup
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div>
+    <h4>جزییات</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupTitle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.GroupID }) |
+    @Html.ActionLink("بازگشت به لیست", "Index")
+</p>

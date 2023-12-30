@@ -1,0 +1,26 @@
+<script>
+
+    $.getJSON("/api/People", function (res) {
+        $.each(res.function(key, val){
+
+            var item = "<tr>  <td>" + val.ID + " </td>   td>" + val.Name + " </td>   td>" + val.FAmily + " </td>  td>" + val.Age + " </td>  td> </td>  </tr>"
+            var item = <tr>   <td>"+val.ID+"</td>  <td>"+val.Name+"</td>   <td>"+val.Family+"</td>   <td>"+val.Age+"</td>  <td>"+val.Command+"</td>  </tr>;
+          
+        })
+
+
+    })
+</script>
+
+<script>
+    $.getJSON("/Api/People", function(res) {
+        $.each(res, function(key, val) {
+            var item = "<tr id='tr_"+val.ID+"'><td>" + val.ID + "</td><td>" + val.Name + "</td><td>" + val.Family + "</td><td>" + val.Age + "</td><td><a class='btn btn-warning  btn-sm' onClick='Edit(" + val.ID + ")'>edit</a><a class='btn btn-danger btn-sm' onClick='Delete(" + val.ID + ")'>delete</a></td></tr>";
+            $("#list").append(item);
+
+        });
+    })
+
+
+
+</script>

@@ -1,0 +1,158 @@
+﻿@model IEnumerable<DataLayer.Ticket>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>تیکتها</h2>
+
+<p>
+    @Html.ActionLink("تیکت جدید", "Create")
+    @*<a class=" btn btn-success btn-block" id="btnNewGroup">افزودن گروه جدید</a>*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TicketGroupnav.GroupTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Discription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Visit)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ShowSlider)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tags)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/TicketImages/@item.ImageName" class="thumbnail" style="max-width:120px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketGroupnav.GroupTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Discription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Visit)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowSlider)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tags)
+            </td>
+            <td>
+
+                <a class="btn btn-sm btn-warning" onclick="editTicket(@item.TicketID)">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a class="btn btn-sm btn-danger" onclick="deleteTicket(@item.TicketID)">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+                <a class="btn btn-sm btn-info" onclick="detailTicket(@item.TicketID)">
+                    <i class="glyphicon glyphicon-folder-open"></i>
+                </a>
+
+                @*@Html.ActionLink("ویرایش", "Edit", new { id = item.TicketID })  |
+                @Html.ActionLink("جزییات", "Details", new { id = item.TicketID })  |
+                @Html.ActionLink("حذف", "Delete", new { id = item.TicketID })*@
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body" id="myModalBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal -->
+
+@section scripts
+{
+    <script src="~/Scripts/modal.js"></script>
+    <script>
+        //$("#btnNewGroup").click(function () {
+
+        //    $.get("/Admin/Tickets/Create", function (result) {
+
+        //        $("#myModal").modal();
+        //        $("#myModalLabel").html("افزودن  گروه جدید");
+        //        $("#myModalBody").html(result);
+        //    })
+
+        //});
+
+        function editTicket(id) {
+            $.get("/Admin/Tickets/Edit/" + id, function (result) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("حذف گروه");
+                $("#myModalBody").html(result);
+            })
+        }
+
+
+        function deleteTicket(id) {
+            $.get("/Admin/Tickets/Delete/" + id, function (result) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("حذف گروه");
+                $("#myModalBody").html(result);
+            })
+        }
+
+        function detailTicket(id) {
+            $.get("/Admin/Tickets/Details/" + id, function (result) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("جزییات گروه");
+                $("#myModalBody").html(result);
+            })
+        }
+
+    </script>
+}
